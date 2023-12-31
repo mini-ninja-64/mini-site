@@ -6,14 +6,8 @@ import Layout from '../layouts/Layout.astro';
 const allBlogPosts = await getCollection('blog');
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<ul role="list" class="link-card-grid">
-			{allBlogPosts.map(post => 
-				<li>
-					<a href={`/blog/${post.slug}`}>{post.data.title}</a>
-				</li>
-			)}
+<Layout title="Welcome to my webpage.">
+		<ul role="list">
+			<li><a href={`/blog`}>my blog</a></li>
 		</ul>
-	</main>
 </Layout>

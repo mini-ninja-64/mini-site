@@ -6,8 +6,6 @@ import solid from '@astrojs/solid-js';
 export default defineConfig({
     integrations: [
         mdx(),
-        solid({
-            include: ["**/solid/**"]
-        })
+        solid()
     ]
 });
