@@ -7,7 +7,13 @@ export default defineConfig({
     integrations: [
         mdx(),
         solid({
-            "include": "**/solid/**"
+            
+            include: "**/solid/**"
         })
-    ]
+    ],
+    // markdown: {
+    //     shikiConfig: {
+    //         theme: "github-light"
+    //     }
+    // }
 });

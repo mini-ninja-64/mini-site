@@ -22,6 +22,43 @@ const { title } = Astro.props;
 </html>
 <style is:global>
 	html {
-		background: #ffb1e5;
+		box-sizing: border-box;
+		color: beige;
+		background: #2e0030;
+		margin: auto;
+		width: 100vw;
+		font: 1rem "Fira Sans", sans-serif;
+	}
+	*, *:before, *:after {
+		box-sizing: inherit;
+	}
+	html > body {
+		display: flex;
+		flex-direction: column;
+		max-width: 800px;
+		margin: auto;
+	}
+	img {
+		margin-left: 2px;
+		margin-right: 2px;
+		border-radius: 5px;
+		width: 100%;
+		max-width:100%;
+		height: auto;
+		align-self: center;
+	}
+	.astro-code {
+		margin-left: 2px;
+		margin-right: 2px;
+		border-radius: 5px;
+		width:100%;
+		max-width:100%;
+		padding: 10px;
+	}
+	code {
+		color: #e1e4e8;
+		border-radius: 5px;
+		padding: 4px;
+		background-color: #24292e;
 	}
 </style>
