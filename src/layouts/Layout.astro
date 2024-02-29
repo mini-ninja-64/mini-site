@@ -43,7 +43,13 @@ function isActive(path: string) {
 		<slot />
 		<hr/>
 		<footer>
-			{socials.map(({name, link}) => <a href={link}>{name}</a>)}
+			{socials.map(({name, link}) => <a 
+				href={link} 
+				target="_blank" 
+				rel="noopener noreferrer">
+					{name}
+				</a>
+			)}
 		</footer>
 	</body>
 </html>
