@@ -1,0 +1,48 @@
+---
+interface Page {
+    name: string;
+    link: string;
+}
+
+interface Props {
+	home: Page;
+    pages: Page[];
+}
+
+const { home, pages } = Astro.props;
+
+function isActive(path: string) {
+	return Astro.url.pathname.startsWith(path);
+}
+---
+
+<header>
+    <a class="home" href={home.link}>{home.name}</a>
+    <nav>
+        {pages.map(({name, link}) => 
+            <a class={isActive(link) ? "active":""} href={link}>{name}</a>
+        )}
+    </nav>
+</header>
+
+
+<style>
+	.home {
+		font-size: xx-large;
+	}
+	header {
+		margin-top: 1em;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: end;
+	}
+	header > nav {
+		display: flex;
+		flex-direction: row;
+		gap: 1em;
+	}
+	.active {
+		text-decoration-color: pink; !important
+	}
+</style>

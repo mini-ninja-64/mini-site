@@ -1,24 +1,16 @@
 ---
+import Nav from "../components/astro/Nav.astro"
+import Footer from "../components/astro/Footer.astro"
 interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
 
-const pages = [
-	{name: "Posts", link: "/blog"},
-	{name: "Projects", link: "/projects"}	
-]
-
 const socials = [
 	{name: "github", link: "https://github.com/mini-ninja-64"},
 	{name: "fediverse", link: "https://fosstodon.org/@mini_ninja_64"},
 ]
-
-function isActive(path: string) {
-	return Astro.url.pathname.startsWith(path);
-}
-
 ---
 
 <!doctype html>
@@ -32,67 +24,26 @@ function isActive(path: string) {
 		<title>{title}</title>
 	</head>
 	<body>
-		<header>
-			<a class="home" href="/">Minis.zone</a>
-			<nav>
-				{pages.map(({name, link}) => 
-					<a class={isActive(link) ? "active":""} href={link}>{name}</a>
-				)}
-			</nav>
-		</header>
+		<Nav 
+			home={{name: "Minis.zone", link: "/"}} 
+			pages={[
+				{name: "Posts", link: "/blog"},
+				{name: "Projects", link: "/projects"}	
+			]}
+		/>
 		<slot />
 		<hr/>
-		<footer>
-			{socials.map(({name, link}) => <a 
-				href={link} 
-				target="_blank" 
-				rel="noopener noreferrer">
-					{name}
-				</a>
-			)}
-		</footer>
+		<Footer socials={[
+			{name: "github", link: "https://github.com/mini-ninja-64"},
+			{name: "fediverse", link: "https://fosstodon.org/@mini_ninja_64"},
+		]} />
 	</body>
 </html>
 
 <style>
-	a  { 
-		text-decoration: none; 
-		color: inherit;
-		text-decoration: underline white 0.1em;
-		font-weight: bolder;
-		transition: all .2s ease-in-out;
-	}
-	a:hover {
-		text-shadow: pink 1px 0 10px;
-	}
-	.home {
-		font-size: xx-large;
-	}
-	header {
-		margin-top: 1em;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: end;
-	}
-	header > nav {
-		display: flex;
-		flex-direction: row;
-		gap: 1em;
-	}
-	.active {
-		text-decoration-color: pink; !important
-	}
-
 	hr {
 		color: white;
 		width: 100%;
-	}
-	footer {
-		display: flex;
-		flex-direction: row;
-		gap: 1em;
-		font-size: small;
 	}
 </style>
 
@@ -138,5 +89,15 @@ function isActive(path: string) {
 		border-radius: 5px;
 		padding: 4px;
 		background-color: #24292e;
+	}
+	a { 
+		text-decoration: none; 
+		color: inherit;
+		text-decoration: underline white 0.1em;
+		font-weight: bolder;
+		transition: all .2s ease-in-out;
+	}
+	a:hover {
+		text-shadow: pink 1px 0 10px;
 	}
 </style>

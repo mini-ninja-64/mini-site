@@ -1,0 +1,33 @@
+---
+interface Social {
+    name: string;
+    link: string;
+}
+
+interface Props {
+	socials: Social[];
+}
+
+const { socials } = Astro.props;
+---
+
+<footer>
+	{socials.map(({name, link}) => <a 
+		href={link} 
+		target="_blank" 
+		rel="noopener noreferrer">
+			{name}
+		</a>
+	)}
+</footer>
+
+<style>
+	footer {
+		display: flex;
+		flex-direction: row;
+		gap: 1em;
+		font-size: small;
+		margin-bottom: 2em;
+		margin-top: 0.1em;
+	}
+</style>
