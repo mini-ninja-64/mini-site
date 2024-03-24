@@ -1,6 +1,6 @@
 ---
-import Nav from "../components/astro/Nav.astro"
-import Footer from "../components/astro/Footer.astro"
+import Nav from "../components/astro/Nav.astro";
+import Footer from "../components/astro/Footer.astro";
 interface Props {
 	title: string;
 }
@@ -8,9 +8,9 @@ interface Props {
 const { title } = Astro.props;
 
 const socials = [
-	{name: "github", link: "https://github.com/mini-ninja-64"},
-	{name: "fediverse", link: "https://fosstodon.org/@mini_ninja_64"},
-]
+	{ name: "github", link: "https://github.com/mini-ninja-64" },
+	{ name: "fediverse", link: "https://fosstodon.org/@mini_ninja_64" },
+];
 ---
 
 <!doctype html>
@@ -24,19 +24,21 @@ const socials = [
 		<title>{title}</title>
 	</head>
 	<body>
-		<Nav 
-			home={{name: "Minis.zone", link: "/"}} 
+		<Nav
+			home={{ name: "Minis.zone", link: "/" }}
 			pages={[
-				{name: "Posts", link: "/blog"},
-				{name: "Projects", link: "/projects"}	
+				{ name: "Posts", link: "/blog" },
+				{ name: "Projects", link: "/projects" },
 			]}
 		/>
 		<slot />
-		<hr/>
-		<Footer socials={[
-			{name: "github", link: "https://github.com/mini-ninja-64"},
-			{name: "fediverse", link: "https://fosstodon.org/@mini_ninja_64"},
-		]} />
+		<hr />
+		<Footer
+			socials={[
+				{ name: "github", link: "https://github.com/mini-ninja-64" },
+				{ name: "fediverse", link: "https://fosstodon.org/@mini_ninja_64" },
+			]}
+		/>
 	</body>
 </html>
 
@@ -54,9 +56,13 @@ const socials = [
 		background: #2e0030;
 		margin: auto;
 		width: 100vw;
-		font: 1rem "Fira Sans", sans-serif;
+		font:
+			1rem "Fira Sans",
+			sans-serif;
 	}
-	*, *:before, *:after {
+	*,
+	*:before,
+	*:after {
 		box-sizing: inherit;
 	}
 	html > body {
@@ -80,8 +86,8 @@ const socials = [
 		margin-left: 2px;
 		margin-right: 2px;
 		border-radius: 5px;
-		width:100%;
-		max-width:100%;
+		width: 100%;
+		max-width: 100%;
 		padding: 10px;
 	}
 	code {
@@ -90,12 +96,12 @@ const socials = [
 		padding: 4px;
 		background-color: #24292e;
 	}
-	a { 
-		text-decoration: none; 
+	a {
+		text-decoration: none;
 		color: inherit;
 		text-decoration: underline white 0.1em;
 		font-weight: bolder;
-		transition: all .2s ease-in-out;
+		transition: all 0.2s ease-in-out;
 	}
 	a:hover {
 		text-shadow: pink 1px 0 10px;

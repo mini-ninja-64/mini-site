@@ -1,7 +1,7 @@
 ---
 interface Social {
-    name: string;
-    link: string;
+	name: string;
+	link: string;
 }
 
 interface Props {
@@ -12,13 +12,13 @@ const { socials } = Astro.props;
 ---
 
 <footer>
-	{socials.map(({name, link}) => <a 
-		href={link} 
-		target="_blank" 
-		rel="noopener noreferrer">
-			{name}
-		</a>
-	)}
+	{
+		socials.map(({ name, link }) => (
+			<a href={link} target="_blank" rel="noopener noreferrer">
+				{name}
+			</a>
+		))
+	}
 </footer>
 
 <style>

@@ -9,20 +9,24 @@ const highlightedPosts = allBlogPosts.slice(0, 5);
 
 <Layout title="Welcome to my webpage.">
 	<p>
-		Hewwoooooo I am <span class="me">mini!!</span> welcome 2 my web zone :3c, I love computers
-		& spend most my free time poking software/hardware.
+		Hewwoooooo I am <span class="me">mini!!</span> welcome 2 my web zone :3c, I love
+		computers & spend most my free time poking software/hardware.
 	</p>
 	<p>
-		Please take some time to have a look around and see if you find something you like (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧.
+		Please take some time to have a look around and see if you find something
+		you like (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧.
 	</p>
 	<h2>Projects</h2>
 	<h2>Musings</h2>
 	<ul role="list">
-		{highlightedPosts.map(post =>
-			<li>
-				<a href={`/blog/${post.slug}`}>{post.data.title}</a> - {post.data.summary}
-			</li>
-		)}
+		{
+			highlightedPosts.map(({ slug, data }) => (
+				<li>
+					<a href={`/blog/${slug}`}>{data.title}</a>
+					{` - ${data.summary}`}
+				</li>
+			))
+		}
 	</ul>
 </Layout>
 
@@ -31,10 +35,11 @@ const highlightedPosts = allBlogPosts.slice(0, 5);
 		margin-right: 0.2em;
 		font-weight: bold;
 		font-size: xx-large;
-		text-shadow:	0.05em 0.05em 0px #ff00d4,
-						0.1em 0.1em 0px #00ffff,
-						0.15em 0.15em 0px #ff0000,
-						0.2em 0.2em 0px #ffee00;
+		text-shadow:
+			0.05em 0.05em 0px #ff00d4,
+			0.1em 0.1em 0px #00ffff,
+			0.15em 0.15em 0px #ff0000,
+			0.2em 0.2em 0px #ffee00;
 	}
 	ul {
 		margin-top: 0.1em;
