@@ -10,7 +10,8 @@ export const tags = z.enum([
 	"this", 
 	"Astro",
 	"JavaScript",
-	"TypeScript"
+	"TypeScript",
+	"TestTag"
 ]);
 export type TagEnum = z.infer<typeof tags>;
 
@@ -22,14 +23,18 @@ const tagDefinitions: Record<TagEnum, Tag> = {
 	Astro: {
 		icon: "",
 		description: "",
-		implicitTags: [ "JavaScript" ]
+		implicitTags: ["JavaScript", "TypeScript"]
 	},
 	TypeScript: {
 		icon: "",
 		description: "",
-		implicitTags: [ "JavaScript" ]
+		implicitTags: ["JavaScript"]
 	},
 	JavaScript: {
+		icon: "",
+		description: ""
+	},
+	TestTag: {
 		icon: "",
 		description: ""
 	},
