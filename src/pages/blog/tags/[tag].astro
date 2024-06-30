@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+import {
+	getAllTags,
+	tagDefinitions,
+	tagsArray,
+} from "../../../content/blog/_tags";
+import type { TagEnum } from "../../../content/blog/_tags";
+import Layout from "../../../layouts/Layout.astro";
+
+export function getStaticPaths() {
+	return tagsArray.map((tag) => ({
+		params: { tag: tag as TagEnum },
+	}));
+}
+
+const tagName = Astro.params.tag;
+
+const posts = (await getCollection("blog")).filter((post) =>
+	getAllTags(post.data).includes(tagName),
+);
+
+const tag = tagDefinitions[tagName];
+---
+
+<Layout title={tagName}>
+	<h1>{tagName}</h1>
+	<p>{tag.description}</p>
+	<ul>
+		{
+			posts.map((post) => (
+				<li>
+					<a href={`/blog/${post.slug}`}>{post.data.title}</a>
+				</li>
+			))
+		}
+	</ul>
+</Layout>
