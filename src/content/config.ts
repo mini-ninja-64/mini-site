@@ -1,4 +1,4 @@
-import blogCollection from "./blog/_collection"
+import blogCollection from "./blog/_collection";
 
 export const collections = {
 	blog: blogCollection,
