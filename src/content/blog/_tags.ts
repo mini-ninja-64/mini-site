@@ -7,15 +7,15 @@ export interface TagDefinition {
 	implicitTags?: TagEnum[];
 }
 
-export const tagsArray = ["this", "Astro", "JavaScript", "TypeScript"] as const;
+export const tagsArray = ["self", "Astro", "JavaScript", "TypeScript"] as const;
 export const tags = z.enum(tagsArray);
 export type TagEnum = z.infer<typeof tags>;
 
 export const tagDefinitions: Record<TagEnum, TagDefinition> = {
-	this: {
+	self: {
 		icon: "",
 		description:
-			'This relates to any "meta" blog posts about my website or blog.',
+			'Self relates to any "meta" blog posts about my website or blog.',
 	},
 	Astro: {
 		icon: "",
