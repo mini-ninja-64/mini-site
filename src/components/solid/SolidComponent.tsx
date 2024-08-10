@@ -5,7 +5,7 @@ export default function SolidComponent() {
 
 	return (
 		<div style={{ color: "aqua" }} onClick={() => setCount(count() + 1)}>
-			This is a Component {count()}
+			This is a Component: {count()} clicks
 		</div>
 	);
 }

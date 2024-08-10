@@ -24,7 +24,9 @@ const tags = getAllTags(post.data);
 	<Hero src={post.data.hero} caption={post.data.summary} />
 	<Content />
 	<div class="tags">
-		{tags.map((tag) => <a href={`/blog/tags/${tag}`}>{tag}</a>)}
+		tags: {
+			tags.map((tag) => <a href={`/blog/tags/${tag.toLowerCase()}`}>{tag}</a>)
+		}
 	</div>
 </Layout>
 
@@ -33,9 +35,9 @@ const tags = getAllTags(post.data);
 		display: flex;
 		flex-direction: row;
 		gap: 0.5em;
+		font-size: small;
 	}
 	.tags > a {
-		font-size: small;
 		color: grey;
 		text-decoration-color: grey;
 	}

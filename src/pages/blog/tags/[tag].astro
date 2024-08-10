@@ -10,22 +10,23 @@ import Layout from "../../../layouts/Layout.astro";
 
 export function getStaticPaths() {
 	return tagsArray.map((tag) => ({
-		params: { tag: tag as TagEnum },
+		params: { tag: tag.toLowerCase() },
+		props: { tag: tag as TagEnum },
 	}));
 }
 
-const tagName = Astro.params.tag;
+const tag = Astro.props.tag;
 
 const posts = (await getCollection("blog")).filter((post) =>
-	getAllTags(post.data).includes(tagName),
+	getAllTags(post.data).includes(tag),
 );
 
-const tag = tagDefinitions[tagName];
+const tagDefinition = tagDefinitions[tag];
 ---
 
-<Layout title={tagName}>
-	<h1>{tagName}</h1>
-	<p>{tag.description}</p>
+<Layout title={tag}>
+	<h1>{tag}</h1>
+	<p>{tagDefinition.description}</p>
 	<ul>
 		{
 			posts.map((post) => (
