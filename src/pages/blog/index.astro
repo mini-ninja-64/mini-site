@@ -14,7 +14,7 @@ const allBlogPosts = await getCollection("blog");
 		{
 			allBlogPosts.map((post) => (
 				<li>
-					<PostLink post={post.data} slug={`/blog/${post.slug}`} />
+					<PostLink post={post.data} slug={post.slug} />
 				</li>
 			))
 		}

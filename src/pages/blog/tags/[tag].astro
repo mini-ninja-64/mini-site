@@ -23,6 +23,8 @@ const posts = (await getCollection("blog")).filter((post) =>
 );
 
 const tagDefinition = tagDefinitions[tag];
+if (tagDefinition === undefined)
+	throw new Error(`Provided unknown tag: '${tag}', this should not happen`);
 ---
 
 <Layout title={tag}>
