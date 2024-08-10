@@ -2,16 +2,19 @@
 import { getCollection } from "astro:content";
 
 import Layout from "../../layouts/Layout.astro";
+import PostLink from "../../components/astro/PostLink.astro";
 
 const allBlogPosts = await getCollection("blog");
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Blog.">
+	<h1>Blog</h1>
+	<p>Welcome to my blog, below you will find my posts</p>
 	<ul>
 		{
 			allBlogPosts.map((post) => (
 				<li>
-					<a href={`/blog/${post.slug}`}>{post.data.title}</a>
+					<PostLink post={post.data} slug={`/blog/${post.slug}`} />
 				</li>
 			))
 		}
