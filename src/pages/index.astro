@@ -1,10 +1,9 @@
 ---
-import { getCollection } from "astro:content";
-
 import Layout from "../layouts/Layout.astro";
 import PostLink from "../components/astro/PostLink.astro";
+import { getAllBlogPosts } from "../content/blog/_collection";
 
-const allBlogPosts = await getCollection("blog");
+const allBlogPosts = await getAllBlogPosts();
 const highlightedPosts = allBlogPosts.slice(0, 5);
 ---
 

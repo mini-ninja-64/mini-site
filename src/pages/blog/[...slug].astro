@@ -21,7 +21,11 @@ const tags = getAllTags(post.data);
 
 <Layout title={post.data.title}>
 	<h1>{post.data.title}</h1>
-	<Hero src={post.data.hero} caption={post.data.summary} />
+	<Hero
+		src={post.data.hero.link}
+		caption={post.data.summary}
+		alt={post.data.hero.alt}
+	/>
 	<Content />
 	<div class="tags">
 		tags: {

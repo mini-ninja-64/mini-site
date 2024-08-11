@@ -13,6 +13,7 @@
 	"dependencies": {
 		"@astrojs/check": "^0.3.4",
 		"@astrojs/mdx": "^2.0.3",
+		"@astrojs/rss": "^4.0.7",
 		"@astrojs/solid-js": "^3.0.3",
 		"astro": "^4.0.8",
 		"solid-js": "^1.8.7",

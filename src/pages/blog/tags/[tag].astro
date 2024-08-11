@@ -8,6 +8,7 @@ import {
 import type { TagEnum } from "../../../content/blog/_tags";
 import Layout from "../../../layouts/Layout.astro";
 import PostLink from "../../../components/astro/PostLink.astro";
+import { getAllBlogPosts } from "../../../content/blog/_collection";
 
 export function getStaticPaths() {
 	return tagsArray.map((tag) => ({
@@ -18,9 +19,8 @@ export function getStaticPaths() {
 
 const tag = Astro.props.tag;
 
-const posts = (await getCollection("blog")).filter((post) =>
-	getAllTags(post.data).includes(tag),
-);
+let posts = await getAllBlogPosts();
+posts = posts.filter((post) => getAllTags(post.data).includes(tag));
 
 const tagDefinition = tagDefinitions[tag];
 if (tagDefinition === undefined)
