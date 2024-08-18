@@ -14,3 +14,8 @@ variable "iac_state_bucket" {
 variable "website_bucket" {
   type = string
 }
+
+variable "website_domain" {
+  type = string
+  default = "minis.zone"
+}
