@@ -10,3 +10,7 @@ variable "aws_profile" {
 variable "iac_state_bucket" {
   type = string
 }
+
+variable "website_state_bucket" {
+  type = string
+}
