@@ -1,10 +1,5 @@
 resource "aws_s3_bucket" "website" {
-  bucket = var.website_state_bucket
-}
-
-resource "aws_s3_bucket_acl" "website" {
-  bucket = aws_s3_bucket.website.id
-  acl = "private"
+  bucket = var.website_bucket
 }
 
 resource "aws_s3_bucket_ownership_controls" "website" {
@@ -22,4 +17,3 @@ resource "aws_s3_bucket_public_access_block" "website" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
-
