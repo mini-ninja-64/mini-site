@@ -3,6 +3,7 @@ mkShell {
   buildInputs = [
     opentofu
     tflint
+    awscli2
     git
     nodejs
     yarn
