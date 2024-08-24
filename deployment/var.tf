@@ -20,7 +20,6 @@ variable "website_domain" {
   default = "minis.zone"
 }
 
-
 variable "cloudfront_origin_id" {
   type    = string
   default = "Website bucket"
