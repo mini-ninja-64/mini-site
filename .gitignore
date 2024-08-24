@@ -19,3 +19,6 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# terraform bootstrap for creating state bucket
+deployment-bootstrap

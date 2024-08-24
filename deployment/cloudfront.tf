@@ -21,6 +21,12 @@ resource "aws_cloudfront_distribution" "website" {
 
     compress               = true
     viewer_protocol_policy = "redirect-to-https"
+
+
+    function_association {
+      event_type = "viewer-request"
+      function_arn = aws_cloudfront_function.index_html_redirect.arn
+    }
   }
 
   viewer_certificate {
@@ -64,4 +70,11 @@ resource "aws_cloudfront_origin_access_control" "website" {
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
   signing_protocol                  = "sigv4"
+}
+
+resource "aws_cloudfront_function" "index_html_redirect" {
+  name = "index_html_redirect"
+  runtime = "cloudfront-js-2.0"
+  publish = true
+  code =  file("${path.module}/index_html_redirect.js")
 }
