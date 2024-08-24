@@ -7,11 +7,13 @@ jobs:
   deploy-website:
     runs-on: ubuntu-latest
 
+    environment: production
+
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v13
       - uses: DeterminateSystems/magic-nix-cache-action@v7
       - run: nix-shell --run "yarn install"
       - run: nix-shell --run "yarn build"
-      - run: nix-shell --run "aws --region ${{ secrets.WEBSITE_BUCKET_REGION }} sts assume-role --role-arn \"${{ secrets.AWS_IAM_ROLE_ARN }}\" --role-session-name ${{ secrets.AWS_SESSION_NAME }}"
+      - run: nix-shell --run "aws --region ${{ secrets.WEBSITE_BUCKET_REGION }} sts assume-role --role-arn \"${{ secrets.AWS_IAM_ROLE_ARN }}\" --role-session-name \"${{ secrets.AWS_SESSION_NAME }}\""
       - run: nix-shell --run "aws --region ${{ secrets.WEBSITE_BUCKET_REGION }} s3 sync ./dist \"s3://${{ secrets.WEBSITE_BUCKET_NAME }}\" --delete --exclude \"images\""
