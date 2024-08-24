@@ -1,5 +1,4 @@
 import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
 import { withTrailingSlash } from "../../utils/url";
 import type { APIContext } from "astro";
 import { title, description } from "./index.astro";
