@@ -6,7 +6,7 @@ terraform {
       version = ">= 5.0.0"
     }
   }
-  
+
   backend "s3" {
     bucket         = var.iac_state_bucket
     key            = "state/terraform.tfstate"
@@ -19,6 +19,8 @@ terraform {
 }
 
 provider "aws" {
-  region = var.aws_region
+  region  = var.aws_region
   profile = var.aws_profile
 }
+
+data "aws_caller_identity" "this" {}

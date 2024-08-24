@@ -1,6 +1,6 @@
 variable "aws_region" {
-  type = string
-  default = "eu-west-2"
+  type    = string
+  default = "us-east-1"
 }
 
 variable "aws_profile" {
@@ -16,6 +16,12 @@ variable "website_bucket" {
 }
 
 variable "website_domain" {
-  type = string
+  type    = string
   default = "minis.zone"
+}
+
+
+variable "cloudfront_origin_id" {
+  type    = string
+  default = "Website bucket"
 }
