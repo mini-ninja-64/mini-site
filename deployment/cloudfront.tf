@@ -24,7 +24,7 @@ resource "aws_cloudfront_distribution" "website" {
 
 
     function_association {
-      event_type = "viewer-request"
+      event_type   = "viewer-request"
       function_arn = aws_cloudfront_function.index_html_redirect.arn
     }
   }
@@ -73,8 +73,8 @@ resource "aws_cloudfront_origin_access_control" "website" {
 }
 
 resource "aws_cloudfront_function" "index_html_redirect" {
-  name = "index_html_redirect"
+  name    = "index_html_redirect"
   runtime = "cloudfront-js-2.0"
   publish = true
-  code =  file("${path.module}/index_html_redirect.js")
+  code    = file("${path.module}/index_html_redirect.js")
 }
