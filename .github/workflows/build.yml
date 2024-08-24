@@ -10,10 +10,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v13
       - uses: DeterminateSystems/magic-nix-cache-action@v7
-      - run: nix-shell
-      - run: yarn install
-      - run: yarn prettier:check
-      - run: yarn build
+      - run: nix-shell --run "yarn install"
+      - run: nix-shell --run "yarn prettier:check"
+      - run: nix-shell --run "yarn build"
 
   check-terraform:
     runs-on: ubuntu-latest
@@ -22,7 +21,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v13
       - uses: DeterminateSystems/magic-nix-cache-action@v7
-      - run: nix-shell
-      - run: cd deployment
-      - run: tflint
-      - run: tofu fmt -check *.tf
+      - run: nix-shell --run "tflint --chdir=deployment"
+      - run: nix-shell --run "tofu fmt -check */**.tf"
