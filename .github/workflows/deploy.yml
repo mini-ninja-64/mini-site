@@ -1,0 +1,18 @@
+name: Build
+
+on:
+  workflow_dispatch: {}
+  push:
+    tags:
+      - '*'
+
+jobs:
+  deploy-website:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@v13
+      - uses: DeterminateSystems/magic-nix-cache-action@v7
+      - run: nix-shell --run "yarn install"
+      - run: nix-shell --run "yarn build"
