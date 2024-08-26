@@ -24,3 +24,7 @@ variable "cloudfront_origin_id" {
   type    = string
   default = "Website bucket"
 }
+
+variable "google_site_verification_id" {
+  type = string
+}

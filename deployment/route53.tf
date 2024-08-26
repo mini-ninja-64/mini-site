@@ -12,3 +12,11 @@ resource "aws_route53_record" "primary" {
     evaluate_target_health = false
   }
 }
+
+resource "aws_route53_record" "google_search_console" {
+  zone_id = aws_route53_zone.website.zone_id
+  name    = var.website_domain
+  type    = "TXT"
+  records = ["google-site-verification=${var.google_site_verification_id}"]
+  ttl     = 3600
+}
