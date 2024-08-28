@@ -10,7 +10,7 @@ resource "aws_cloudfront_distribution" "website" {
   price_class     = "PriceClass_100"
 
   default_root_object = "index.html"
-  aliases             = [var.website_domain]
+  aliases             = [var.website_domain, "www.${var.website_domain}"]
 
   default_cache_behavior {
     allowed_methods = ["GET", "HEAD"]
