@@ -1,0 +1,14 @@
+---
+import Icon from "../Icon/Icon.astro";
+
+interface Props {
+	name: string;
+}
+---
+
+<li>
+	<Icon name="folder">{Astro.props.name}</Icon>
+	<ul class="folder-node">
+		<slot />
+	</ul>
+</li>

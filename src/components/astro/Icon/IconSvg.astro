@@ -1,0 +1,40 @@
+---
+import { IconPromises } from "./icons";
+import type { IconName, IconWeight } from "./icons";
+
+export interface Props {
+	alt?: string | undefined;
+	name: IconName;
+	size?: number | string | undefined;
+	color?: string | undefined;
+	mirrored?: boolean | undefined;
+	weight?: IconWeight | undefined;
+	class?: string | undefined;
+}
+
+const {
+	name,
+	alt,
+	size = "1em",
+	weight = "bold",
+	color = "currentColor",
+	mirrored = false,
+	class: className,
+	...rest
+} = Astro.props;
+const icon = await IconPromises[weight][name]();
+---
+
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	width={size}
+	height={size}
+	fill={color}
+	viewBox="0 0 256 256"
+	transform={mirrored ? "scale(-1, 1)" : undefined}
+	class={className}
+	{...rest}
+>
+	{!!alt && <title>{alt}</title>}
+	<Fragment set:html={icon.html} />
+</svg>

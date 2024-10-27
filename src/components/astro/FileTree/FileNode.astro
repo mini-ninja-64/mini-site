@@ -1,0 +1,14 @@
+---
+import Icon from "../Icon/Icon.astro";
+
+interface Props {
+	name: string;
+	note?: string;
+}
+
+const { name, note } = Astro.props;
+---
+
+<li>
+	<Icon name="file">{name}{note && <Icon name="arrow-left">{note}</Icon>}</Icon>
+</li>

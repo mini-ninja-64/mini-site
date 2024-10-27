@@ -1,0 +1,29 @@
+---
+import Icon from "./Icon/Icon.astro";
+
+const noteColour = "pink";
+---
+
+<div class="side-note">
+	<Icon size="1.5em" name="note" class="title" container="p">Side Note</Icon>
+	<p>
+		<slot />
+	</p>
+</div>
+
+<style define:vars={{ noteColour }}>
+	.side-note {
+		padding-left: 1.5em;
+		border-left: 0.2em solid;
+		border-color: var(--noteColour);
+		text-decoration-color: var(--noteColour);
+	}
+	.title {
+		display: inline-flex;
+		align-items: center;
+		margin-bottom: 0;
+		color: var(--noteColour);
+		font-weight: bold;
+		font-size: large;
+	}
+</style>
