@@ -1,0 +1,79 @@
+---
+interface Props {}
+---
+
+<span class="translating"
+	><span class="rotating"><span class="scaling"><slot /></span></span></span
+>
+<style>
+	@keyframes rotating {
+		to {
+			transform: rotate(10deg);
+		}
+		from {
+			transform: rotate(-10deg);
+		}
+	}
+
+	@keyframes scaling {
+		to {
+			transform: scale(1);
+		}
+		from {
+			transform: scale(1.1);
+		}
+	}
+
+	@keyframes translating {
+		to {
+			transform: translateY(0.1em);
+		}
+		from {
+			transform: translateY(-0.1em);
+		}
+	}
+
+	@keyframes glowing {
+		0%,
+		18%,
+		22%,
+		25%,
+		53%,
+		57%,
+		100% {
+			text-shadow:
+				0 0 4px #fff,
+				0 0 11px #fff,
+				0 0 19px #fff,
+				0 0 40px rgb(255, 72, 72),
+				0 0 80px rgb(156, 50, 255),
+				0 0 90px rgb(239, 65, 255),
+				0 0 100px rgb(255, 95, 207),
+				0 0 150px rgb(250, 99, 255);
+		}
+		20%,
+		24%,
+		55% {
+			text-shadow: none;
+		}
+	}
+
+	span {
+		display: inline-block;
+		transform-origin: bottom center;
+	}
+
+	.scaling {
+		animation: scaling 0.8s infinite ease-in-out alternate-reverse;
+	}
+
+	.rotating {
+		animation: rotating 1s infinite ease-in-out alternate-reverse;
+	}
+
+	.translating {
+		animation:
+			translating 1.25s infinite ease-in-out alternate-reverse,
+			glowing 5s infinite;
+	}
+</style>

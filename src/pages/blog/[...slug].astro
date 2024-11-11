@@ -20,6 +20,13 @@ const tags = getAllTags(post.data);
 ---
 
 <Layout title={post.data.title}>
+	{
+		post.data.draft && (
+			<div class="ribbon-container">
+				<div class="draft-ribbon">🚧 DRAFT POST 🚧</div>
+			</div>
+		)
+	}
 	<h1>{post.data.title}</h1>
 	<Hero
 		src={post.data.hero.link}
@@ -44,5 +51,23 @@ const tags = getAllTags(post.data);
 	.tags > a {
 		color: grey;
 		text-decoration-color: grey;
+	}
+	.ribbon-container {
+		position: fixed;
+		top: 0em;
+	}
+	.draft-ribbon {
+		position: fixed;
+		background-color: yellow;
+		color: black;
+		font-family: monospace;
+		font-weight: bold;
+		font-size: 1em;
+		padding: 0em 3em;
+		text-align: center;
+		top: 0em;
+		left: 0em;
+		width: 100vw;
+		box-shadow: 0.25em 0.25em 0.5em black;
 	}
 </style>

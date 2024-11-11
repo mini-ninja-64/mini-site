@@ -13,6 +13,7 @@ draft: true
 
 import SolidComponent from "../../../components/solid/SolidComponent";
 import Meowable from "../../../components/solid/Meowable";
+import Enticing from "../../../components/astro/Enticing.astro";
 import FileTree from "../../../components/astro/FileTree/FileTree.astro";
 import FileNode from "../../../components/astro/FileTree/FileNode.astro";
 import FolderNode from "../../../components/astro/FileTree/FolderNode.astro";
@@ -20,40 +21,79 @@ import SideNote from "../../../components/astro/SideNote.astro";
 
 wooo, i have a blog now, in fact ur _probably_ reading this post on it
 
-Like with most things its often fun and informative to explore how we got here, so to begin I will talk a bit about blog **lore**. This is not my first attempt at building a blog but it is the first "proper" one I've built and shipped.
+Like with most things its often fun and informative to explore how we got here,
+so to begin I will talk a bit about blog **lore**. This is not my first attempt
+at building a blog but it is the first "proper" one I've built and shipped.
 
-<SideNote>
+<SideNote type="note">
 	I did have an old [blogspot/blogger](https://www.blogger.com) as a kid, which
 	im not really counting, but its funny to think about
 </SideNote>
 
-I decided I wanted to make a blog after reading a number of independednt blogs and finding them to be consistently inspiring, it got me thinking about projects I have worked on or build and i felt a bit sad that there was no way to see some of my oldest code and projects as they are not logged anywhere, this tends to be at odds with my normal desire to document things and share any and all accrued knowledge.
+I decided I wanted to make a blog after reading a number of independednt blogs
+and finding them to be consistently inspiring, it got me thinking about projects
+I have worked on or build and i felt a bit sad that there was no way to see some
+of my oldest code and projects as they are not logged anywhere, this tends to be
+at odds with my normal desire to document things and share any and all accrued
+knowledge.
 
-Over the past few years I have attempted to make a number of personal websites but kept getting distracted or busy. This time I decided to try my best to deliver _something_ I should try and keep things as simple while keeping a solid base that I can easily extend and find non-limiting.
+Over the past few years I have attempted to make a number of personal websites
+but kept getting distracted or busy. This time I decided to try my best to
+deliver _something_ I should try and keep things as simple while keeping a solid
+base that I can easily extend and find non-limiting.
 
 In my head I had a list of things that would be ideal for my blog, these being:
 
 - Making a blog post should be as easy as making a markdown file
 - I do not want blog posts to be limited by markdown as a format
-- I want to use JSX for webpage templating as I personally prefer it to raw HTML with nunjucks, handlebars etc..
-- I want to serve mostly static HTML maybe with the occasional bit of JavaScript injected for fun interactive elements like <Meowable>this</Meowable>, as (imo) it makes for a nice user experience.
+- I want to use JSX for webpage templating as I personally prefer it to raw HTML
+  with nunjucks, handlebars etc..
+- I want to serve mostly static HTML maybe with the occasional bit of JavaScript
+  injected for fun interactive elements like
+  <Enticing>
+  	<Meowable client:load>🐈this🐈</Meowable>
+  </Enticing>
+  , as (imo) it makes for a nice user experience.
 
 # Experiments 👩‍🔬
 
-Taking my list of desires I wanted to figure out what was feasible, going in I foresaw at least 2 possible approaches, use a SSG or build my own wierd custom gluing bits together application, which although appealing would be me yak shaving possibly leading to me not shipping anything and putting my website back on the project shelf again.
+Taking my list of desires I wanted to figure out what was feasible, going in I
+foresaw at least 2 possible approaches, use a SSG or build my own wierd custom
+gluing bits together application, which although appealing would be me yak
+shaving possibly leading to me once again not shipping anything and putting my
+website back on the project shelf.
 
-Something I had known about and wanted to use for a while was a format called [MDX](https://mdxjs.com/) for me it seemed perfect for writing blog posts as my posts would not be limited by Markdown as I can stick components into the post (TODO: 1 here)
+Something I had known about and wanted to use for a while was a format called
+[MDX](https://mdxjs.com/) for me it seemed perfect for writing blog posts as my
+posts would not be limited by Markdown as I can stick components into the post
+(TODO: 1 here)
 
-Knowing I would prefer to use an SSG all I needed to do was find one that worked like I wanted, I had heard good things about [11ty](https://www.11ty.dev/), so I tried it out but quickly found it a little bit limiting for my desired use cases, as I wanted to use JSX for templating I tried to make an 11ty plugin which worked but got annoyed when I had to keep fighting it to get further, so I started looking for other options before I went further with rolling my own plugins (since I did this investigation it seems 11ty now has support for [MDX](https://www.11ty.dev/docs/languages/mdx/) & [JSX](https://www.11ty.dev/docs/languages/jsx/)). When looking at different SSG's I came across a framework called [Astro](https://astro.build/) which from the sales pitch seemed suspiciously perfect, so I built a little hello-world project and to my surprise everything I wanted was supported with minimal work (mostly just adding 1st party dependencies), I could create blog posts in MDX, create templates in JSX AND generate a fully static site with components that could be loaded at runtime using the "islands architecture".
+Knowing I would prefer to use an SSG all I needed to do was find one that worked
+like I wanted, I had heard good things about [11ty](https://www.11ty.dev/), so I
+tried it out but quickly found it a little bit limiting for my desired use
+cases, as I wanted to use JSX for templating I tried to make an 11ty plugin
+which worked but got annoyed when I had to keep fighting it to get further, so I
+started looking for other options before I went further with rolling my own
+plugins (since I carried out this investigation 11ty has gained support for
+[MDX](https://www.11ty.dev/docs/languages/mdx/) &
+[JSX](https://www.11ty.dev/docs/languages/jsx/)). When looking at different
+SSG's I came across a framework called [Astro](https://astro.build/) which from
+the sales pitch seemed suspiciously perfect, so I built a little hello-world
+project and to my surprise everything I wanted was supported with minimal work
+(mostly just adding 1st party dependencies), I could create blog posts in MDX,
+create templates in JSX AND generate a fully static site with components that
+could be loaded at runtime using the "islands architecture".
 
-<SideNote>
-	I am a big fan of islands as it makes progressive enhancement using sprinkles
-	of JS really easy <br /> (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
+<SideNote type="note">
+	I am a big fan of the islands architecture as it makes progressive enhancement
+	using sprinkles of JS really easy <br /> (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
 </SideNote>
 
 # Implementing 👩‍💻
 
-Building upon my initial PoC work with Astro I built up a project structure I was happy with, and started building out my webpages, in the end I went with a mix of Astro & Solid components which worked well for me.
+Building upon my initial PoC work with Astro I built up a project structure I
+was happy with, and started building out my webpages, in the end I went with a
+mix of Astro & Solid components which worked well for me.
 
 <FileTree name="/">
 	<FolderNode name="src">
@@ -74,36 +114,52 @@ Building upon my initial PoC work with Astro I built up a project structure I wa
 	</FolderNode>
 </FileTree>
 
+<SideNote type="note">
+	This file tree was made using some cool component & tags in the MDX file, see
+	[here](TODO)
+</SideNote>
+
 # Deploying
 
-Before this project i had never deployed something to AWS or used terraform, it was fun and interesting learning about both of them!!
+Before this project i had never deployed something to AWS or used terraform, it
+was fun and interesting learning about both of them!!
 
-Side Quest, i initially tried using cloud flare r2 and there cdn to save money but their terraform provider is dismal as lots of configuration has to be done using there web console.
+<SideNote type="quest">
+	I initially tried using Cloudflare R2 and their CDN to save money but their
+	terraform provider is lacking surprisingly basic (imo) features. You can only
+	link an R2 bucket to your custom domain through the web console or by using
+	some custom terraform to call their API. [Please don't mark issues as
+	completed unless they actually
+	are.](https://github.com/cloudflare/terraform-provider-cloudflare/issues/2537)
+</SideNote>
 
-learning terraform was a bit weird getting my head around some of its concepts, i like a lot of what i have learned but honestly some of it less so
+Before this blog I had never touched Terraform/OpenTofu/HCL, I initially found
+it hard to learn Terraform but after using it for a while and I have come to the
+conclusion that it is fine™. I feel no strong feelings towards it, I think
+there are ways it could be improved and also things it does nicely.
 
-todo: loves and hates list
+TODO: loves and hates list TODO: opentofu is good has cool backend variable
+features TODO: I might check out pulumi, but their ai slop is offputting seo
+spam
 
-anyway for this project it's fairly simple
+For this project my cloud stack is fairly simple.
 
-aws route53
-aws s3
-aws cloudfront
-aws certs
+aws route53 aws s3 aws cloudfront aws certs
 
 here is how it goes together
 
 wackyness
 
-- index.html routing, i wish cloud front had a magic button to do this, it feels dumb af for me to put a custom function for it
+- index.html routing, i wish cloud front had a magic button to do this, it feels
+  dumb af for me to put a custom function for it
 - routing www to non www, same thing really
 
-automation
-GitHub actions for deploy
-do i need for terraform
+TODO: automation GitHub actions for deploy do i need for terraform
 
 # Conclusion
 
-anyway that's how we got here, i would love to hear ur thoughts on my setup and ways i could improve it or if u were inspiring by any of it
+anyway that's how we got here, i would love to hear ur thoughts on my setup and
+ways i could improve it or have literally ANY thoughts!!!
 
-11ty work: https://discord.com/channels/610842768910057474/610850421749186570/1171198287299231815
+11ty work:
+https://discord.com/channels/610842768910057474/610850421749186570/1171198287299231815
