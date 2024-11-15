@@ -27,4 +27,4 @@ jobs:
       - run:
           nix-shell --run "aws --region ${{ secrets.WEBSITE_BUCKET_REGION }} s3
           sync ./dist \"s3://${{ secrets.WEBSITE_BUCKET_NAME }}\" --delete
-          --exclude \"images\""
+          --exclude \"images/*\" --exclude \"audio/*\""
