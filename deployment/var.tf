@@ -28,3 +28,11 @@ variable "cloudfront_origin_id" {
 variable "google_site_verification_id" {
   type = string
 }
+
+variable "proton_mail_verification_id" {
+  type = string
+}
+
+variable "proton_mail_dkim_id" {
+  type = string
+}
