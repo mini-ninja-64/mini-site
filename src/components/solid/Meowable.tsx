@@ -5,7 +5,7 @@ export default function Meowable({ children }: ParentProps) {
 		<span
 			style={{ cursor: "pointer" }}
 			onClick={() => {
-				const audio = new Audio("/audio/meow.mp3");
+				const audio = new Audio("/audio/meow1.mp3");
 				audio.preservesPitch = false;
 				audio.playbackRate = 1.0 - Math.random() * 0.25;
 				audio.play().catch((e) => console.error(e));
