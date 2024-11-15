@@ -19,7 +19,7 @@ const { Content } = await post.render();
 const tags = getAllTags(post.data);
 ---
 
-<Layout title={post.data.title}>
+<Layout title={post.data.title} description={post.data.summary}>
 	{
 		post.data.draft && (
 			<div class="ribbon-container">

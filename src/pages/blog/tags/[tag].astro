@@ -26,7 +26,7 @@ if (tagDefinition === undefined)
 	throw new Error(`Provided unknown tag: '${tag}', this should not happen`);
 ---
 
-<Layout title={tag}>
+<Layout title={tag} description={`Blog posts tagged with '${tag}'`}>
 	<h1>{tag}</h1>
 	<p>{tagDefinition.description}</p>
 	<ul>
