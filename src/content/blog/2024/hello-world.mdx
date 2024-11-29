@@ -124,15 +124,6 @@ mix of Astro & Solid components which worked well for me.
 Before this project i had never deployed something to AWS or used terraform, it
 was fun and interesting learning about both of them!!
 
-<SideNote type="quest">
-	I initially tried using Cloudflare R2 and their CDN to save money but their
-	terraform provider is lacking surprisingly basic (imo) features. You can only
-	link an R2 bucket to your custom domain through the web console or by using
-	some custom terraform to call their API. [Please don't mark issues as
-	completed unless they actually
-	are.](https://github.com/cloudflare/terraform-provider-cloudflare/issues/2537)
-</SideNote>
-
 Before this blog I had never touched Terraform/OpenTofu/HCL, I initially found
 it hard to learn Terraform but after using it for 1 WHOLE project I have come to
 the conclusion that it is fine™. I feel no strong feelings towards it
@@ -143,26 +134,47 @@ TODO: loves and hates list TODO: opentofu is good has cool backend variable
 features TODO: I might check out pulumi, but their ai slop is offputting seo
 spam
 
-For this project my cloud stack is fairly simple.
+My cloud stack for this site is fairly simple, it's hosted on AWS and uses:
 
-aws route53 aws s3 aws cloudfront aws certs
+- CloudFront
+- S3
+- AWS Certificate Manager (ACM)
+- Route53
 
-here is how it goes together
+Essentially my website at it's simplest is an S3v bucket of static files which
+are distributed worldwide through CloudFront as a CDN. ACM is used for providing
+HTTPS certificates and Route53 for DNS record management.
 
-wackyness
+<SideNote type="quest">
+	I initially tried using Cloudflare R2 and their CDN to save money but their
+	terraform provider is lacking surprisingly basic (imo) features. You can only
+	link an R2 bucket to your custom domain through the web console or by using
+	some custom terraform to HTTP call their private undocumented API. [Please
+	don't mark issues as completed unless they actually
+	are.](https://github.com/cloudflare/terraform-provider-cloudflare/issues/2537)
+</SideNote>
 
-- index.html routing, i wish cloud front had a magic button to do this, it feels
-  dumb af for me to put a custom function for it
-- routing www to non www, same thing really
+## A little problem
 
-TODO: automation GitHub actions for deploy do i need for terraform
+This works great, except for 1 teeny tiny thing, all my HTML files have a
+`.html` at the end so would only be accessible through urls like
+`/blog/index.html`, personally I would prefer if links like `/blog` could be
+used. To fix this I utilise a CloudFront function, this is a small bit of code
+that runs on each request (for a fee 😭).
+
+<SideNote type="note">
+	My CloudFront function also reroutes any requests on the `www` subdomain, to
+	the apex domain.
+</SideNote>
 
 # Next? 🤔
 
-Hopefully more blog posts and working to improve parts of the blog I am unhappy
-with like
+Hopefully more blog posts about things I work on and improving parts of the blog
+like my GitHub actions which only carry out the building and deploy of the site but
+not CloudFront cache invalidation or applying terraform files (currently done
+locally by me 😳, which I am unhappy with)
 
 # Conclusion 🥳
 
-Anyway that's how we got here, i would love to hear ur thoughts on my setup and
-ways i could improve it or have literally ANY thoughts!!!
+Anyway that's how we got here, I would love to hear ur thoughts on my setup and
+ways I could improve it or have literally ANY thoughts!!!
