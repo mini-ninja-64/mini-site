@@ -11,7 +11,7 @@ tags:
 draft: true
 ---
 
-import SolidComponent from "../../../components/solid/SolidComponent";
+import Grower from "../../../components/solid/Grower";
 import Meowable from "../../../components/solid/Meowable";
 import Enticing from "../../../components/astro/Enticing.astro";
 import FileTree from "../../../components/astro/FileTree/FileTree.astro";
@@ -19,7 +19,7 @@ import FileNode from "../../../components/astro/FileTree/FileNode.astro";
 import FolderNode from "../../../components/astro/FileTree/FolderNode.astro";
 import SideNote from "../../../components/astro/SideNote.astro";
 
-wooo, i have a blog now, in fact ur _probably_ reading this post on it
+wooo, I have a blog now, in fact ur _probably_ reading this post on it
 
 Like with most things its often fun and informative to explore how we got here,
 so to begin I will talk a bit about blog **lore**. This is not my first attempt
@@ -32,7 +32,7 @@ at building a blog but it is the first "proper" one I've built and shipped.
 
 I decided I wanted to make a blog after reading a number of independednt blogs
 and finding them to be consistently inspiring, it got me thinking about projects
-I have worked on or build and i felt a bit sad that there was no way to see some
+I have worked on or build and I felt a bit sad that there was no way to see some
 of my oldest code and projects as they are not logged anywhere, this tends to be
 at odds with my normal desire to document things and share any and all accrued
 knowledge.
@@ -66,13 +66,13 @@ website back on the project shelf.
 Something I had known about and wanted to use for a while was a format called
 [MDX](https://mdxjs.com/) for me it seemed perfect for writing blog posts as my
 posts would not be limited by Markdown as I can stick components into the post
-(TODO: 1 here)
+like <Grower client:load>this one</Grower> (go on click it, I know you want to).
 
 Knowing I would prefer to use an SSG all I needed to do was find one that worked
 like I wanted, I had heard good things about [11ty](https://www.11ty.dev/), so I
-tried it out but quickly found it a little bit limiting for my desired use
-cases, as I wanted to use JSX for templating I tried to make an 11ty plugin
-which worked but got annoyed when I had to keep fighting it to get further, so I
+tried it out but quickly found it a little limiting for my desired use cases, as
+I wanted to use JSX for templating I started making an 11ty plugin which for
+this behaviour but felt like I was fighting 11ty to get what I wanted, so I
 started looking for other options before I went further with rolling my own
 plugins (since I carried out this investigation 11ty has gained support for
 [MDX](https://www.11ty.dev/docs/languages/mdx/) &
@@ -114,35 +114,30 @@ mix of Astro & Solid components which worked well for me.
 	</FolderNode>
 </FileTree>
 
-<SideNote type="note">
-	This file tree was made using some cool component & tags in the MDX file, see
-	[here](TODO)
-</SideNote>
-
 # Deploying 🚀
 
-Before this project i had never deployed something to AWS or used terraform, it
-was fun and interesting learning about both of them!!
+Before this project I had never deployed to AWS using terraform, it was fun and
+interesting learning about both of them!!
 
-Before this blog I had never touched Terraform/OpenTofu/HCL, I initially found
-it hard to learn Terraform but after using it for 1 WHOLE project I have come to
-the conclusion that it is fine™. I feel no strong feelings towards it
-currently, I think there are ways it could be improved and also things it does
-nicely.
+As a Terraform/OpenTofu/HCL non-toucher, I initially found it difficult to parse
+Terraform but after using it for 1 WHOLE project I have come to the conclusion
+that it is fine™. I feel no strong feelings towards it currently, I think there
+are ways it could be improved and also things it does nicely.
 
-TODO: loves and hates list TODO: opentofu is good has cool backend variable
-features TODO: I might check out pulumi, but their ai slop is offputting seo
-spam
+That being said I was pleaased to see OpenTofu picking up the slack, and
+implementing features that are missing in Terraform like using variables in a
+[backend block](https://github.com/opentofu/opentofu/issues/388)
 
-My cloud stack for this site is fairly simple, it's hosted on AWS and uses:
+My cloud stack for this site is fairly simple, it's hosted on AWS and uses the
+following:
 
 - CloudFront
 - S3
 - AWS Certificate Manager (ACM)
 - Route53
 
-Essentially my website at it's simplest is an S3v bucket of static files which
-are distributed worldwide through CloudFront as a CDN. ACM is used for providing
+Essentially my website is an S3 bucket of static HTML files which are
+distributed worldwide through CloudFront as a CDN. ACM is used for providing
 HTTPS certificates and Route53 for DNS record management.
 
 <SideNote type="quest">
@@ -158,9 +153,10 @@ HTTPS certificates and Route53 for DNS record management.
 
 This works great, except for 1 teeny tiny thing, all my HTML files have a
 `.html` at the end so would only be accessible through urls like
-`/blog/index.html`, personally I would prefer if links like `/blog` could be
-used. To fix this I utilise a CloudFront function, this is a small bit of code
-that runs on each request (for a fee 😭).
+`/blog/index.html`, although this is not really a problem and event used by some
+big retailers, I would prefer if links like `/blog` could be used. To fix this I
+utilise a CloudFront function, this is a small bit of code that runs on each
+request (for a fee 😭).
 
 <SideNote type="note">
 	My CloudFront function also reroutes any requests on the `www` subdomain, to
@@ -170,11 +166,21 @@ that runs on each request (for a fee 😭).
 # Next? 🤔
 
 Hopefully more blog posts about things I work on and improving parts of the blog
-like my GitHub actions which only carry out the building and deploy of the site but
-not CloudFront cache invalidation or applying terraform files (currently done
-locally by me 😳, which I am unhappy with)
+like my GitHub actions which only carry out the building and deploy of the site
+but not CloudFront cache invalidation or applying terraform files (currently
+done locally by me 😳, which I am unhappy with)
+
+I would also like to explore moving away from AWS for a less all encompassing
+cloud provider maybe [bunny.net](https://bunny.net)?
 
 # Conclusion 🥳
 
-Anyway that's how we got here, I would love to hear ur thoughts on my setup and
-ways I could improve it or have literally ANY thoughts!!!
+Anyway that's how we got here, I would love to hear ur thoughts on my blog setup
+or any ways I could improve it or if u have literally ANY OTHER THOUGHTS!!!!
+
+This post took significantly longer than expected because I got worried about my
+blog posts quality, so started working on other projects then I broke my elbow
+and found typing hard but after being inspired by TodePond to
+[normalise sharing scrappy fiddles sharing scrappy fiddles](https://www.todepond.com/sky/sharing-scrappy-fiddles-is-hard/)
+I think that maybe my blog should allow me to riff and be a living space rather
+than something to be protected & held in perfect condition.
