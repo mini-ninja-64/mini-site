@@ -1,0 +1,63 @@
+---
+import Icon from "./Icon/Icon.astro";
+import type { IconName } from "./Icon/icons";
+
+interface TypedProps {
+	type: "note" | "quest";
+}
+
+interface GenericProps {
+	title: string;
+	icon: IconName;
+	color: string;
+}
+
+type Props = TypedProps | GenericProps;
+
+let title: string;
+let icon: IconName;
+let colour: string;
+const props = Astro.props;
+if ("type" in props) {
+	switch (props.type) {
+		case "note":
+			title = "Side Note";
+			icon = "note";
+			colour = "pink";
+			break;
+		case "quest":
+			title = "Side Quest";
+			icon = "sword";
+			colour = "gold";
+			break;
+	}
+} else {
+	title = props.title;
+	icon = props.icon;
+	colour = props.color;
+}
+---
+
+<div class="side-note">
+	<Icon size="1.5em" name={icon} class="title" container="p">{title}</Icon>
+	<p>
+		<slot />
+	</p>
+</div>
+
+<style define:vars={{ colour }}>
+	.side-note {
+		padding-left: 1.5em;
+		border-left: 0.2em solid;
+		border-color: var(--colour);
+		text-decoration-color: var(--colour);
+	}
+	.title {
+		display: inline-flex;
+		align-items: center;
+		margin-bottom: 0;
+		color: var(--colour);
+		font-weight: bold;
+		font-size: large;
+	}
+</style>

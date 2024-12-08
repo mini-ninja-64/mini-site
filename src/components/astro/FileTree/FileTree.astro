@@ -1,0 +1,67 @@
+---
+export interface File {
+	type: "file" | "directory";
+	name: string;
+	contents?: FileStructure;
+}
+export type FileStructure = File[];
+
+interface Props {
+	name: string;
+	contents: FileStructure;
+}
+---
+
+<ul class="file-tree">
+	<li>
+		{Astro.props.name}
+		<ul class="root-node">
+			<slot />
+		</ul>
+	</li>
+</ul>
+
+<style is:global>
+	.file-tree li {
+		display: block;
+		position: relative;
+		list-style: none;
+		padding-left: 30px;
+		border-left: 2px solid beige;
+	}
+	.file-tree ul {
+		padding-left: 0;
+		margin-left: 0;
+	}
+
+	.file-tree ul li:last-child {
+		border-color: transparent;
+	}
+
+	.file-tree ul li::before {
+		content: "";
+		display: block;
+		position: absolute;
+		border: solid beige;
+		border-width: 0 0 2px 2px;
+		width: 25px;
+		height: 14px;
+		left: -2px;
+		top: 0px;
+	}
+	.file-tree > li {
+		border: 0;
+		border-color: transparent;
+	}
+
+	ul.file-tree {
+		margin-left: 0;
+		padding-left: 0;
+	}
+
+	.file-tree-note::before {
+		padding-left: 0.25em;
+		content: "\21E6";
+		padding-right: 0.25em;
+	}
+</style>

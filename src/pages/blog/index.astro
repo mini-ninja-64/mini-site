@@ -5,19 +5,26 @@ import { getAllBlogPosts } from "../../content/blog/_collection";
 
 const allBlogPosts = await getAllBlogPosts();
 export const title = "Mini's Blog";
-export const description = "Welcome to my blog, here you can find my posts";
+export const description = "Welcome to my blog, here you can find my posts :3";
 ---
 
-<Layout title="Blog.">
+<Layout
+	title="Blog"
+	description="Mini's blog, the home of musings and ramblings"
+>
 	<h1>{title}</h1>
 	<p>{description}</p>
-	<ul>
-		{
-			allBlogPosts.map((post) => (
-				<li>
-					<PostLink post={post.data} slug={post.slug} />
-				</li>
-			))
-		}
-	</ul>
+	{
+		allBlogPosts.length === 0 ? (
+			<p>There are no posts here yet (ಥ﹏ಥ)</p>
+		) : (
+			<ul>
+				{allBlogPosts.map((post) => (
+					<li>
+						<PostLink post={post.data} slug={post.slug} />
+					</li>
+				))}
+			</ul>
+		)
+	}
 </Layout>

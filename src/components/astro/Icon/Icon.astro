@@ -1,0 +1,60 @@
+---
+import type { Props as BaseProps } from "./IconSvg.astro";
+import IconSvg from "./IconSvg.astro";
+
+interface Props extends BaseProps {
+	container?: string;
+}
+
+const {
+	name,
+	alt,
+	size = "1em",
+	weight = "bold",
+	color = "currentColor",
+	mirrored = false,
+	class: className,
+	container: ContainerTag = "div",
+	...rest
+} = Astro.props;
+
+const slots = Object.keys(Astro.slots);
+const hasChildren = slots.length > 0;
+---
+
+{
+	hasChildren ? (
+		<ContainerTag class:list={["icon-container", className]} {...rest}>
+			<IconSvg
+				name={name}
+				alt={alt}
+				size={size}
+				weight={weight}
+				color={color}
+				mirrored={mirrored}
+				class={className}
+				{...rest}
+			/>
+			<slot />
+		</ContainerTag>
+	) : (
+		<IconSvg
+			name={name}
+			alt={alt}
+			size={size}
+			weight={weight}
+			color={color}
+			mirrored={mirrored}
+			class={className}
+			{...rest}
+		/>
+	)
+}
+
+<style>
+	.icon-container {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+	}
+</style>
