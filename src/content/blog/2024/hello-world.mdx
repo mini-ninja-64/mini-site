@@ -30,16 +30,15 @@ at building a blog but it is the first "proper" one I've built and shipped.
 	im not really counting, but its funny to think about
 </SideNote>
 
-I decided I wanted to make a blog after reading a number of independent blogs
-and finding them inspiring, it got me thinking about projects I have worked on
-or built and I felt a bit sad that there was no way to see some of my oldest
-code and projects as they are not logged anywhere, this tends to be at odds with
-my normal desire to document things and share any and all accrued knowledge.
+After reading a number of independent blogs, I felt inspired to build my own!
+Despite having worked on many a project over the years, I did not have a real
+place to share them, this leaves some of my oldest code and systems completely
+lost to time. I feel regret about this due to my innate desire to document and
+share any and all accrued knowledge.
 
-Over the past few years I have attempted to make a number of personal websites
-but kept getting distracted or busy. This time I decided to try my best to
-deliver _something_. I wanted to try and keep things as simple as possible while
-having a solid non-limiting foundation that I can easily extend.
+This time I decided to try my best to deliver _something_. I wanted to try and
+keep things as simple as possible while having a solid non-limiting foundation
+that can be easily extended.
 
 In my head I had a list of things that would be ideal for my blog, these being:
 
@@ -63,25 +62,27 @@ shaving, possibly leading to me once again not shipping anything and putting my
 website back on the project shelf.
 
 Something I had known about and wanted to use for a while was a format called
-[MDX](https://mdxjs.com/). To me it seemed perfect for writing blog posts as my
-markdown posts can be enriched by sticking components into them like the
-following: <Grower client:load>CLICK ME!!!</Grower>.
+[MDX](https://mdxjs.com/). To me it seemed perfect for writing blog posts as I
+can easily enrich my markdown files by sticking components into them like this
+one: <Grower client:load>CLICK ME!!!</Grower>.
 
-Knowing I would prefer to use an SSG all I needed to do was find one that worked
-like I wanted. I had heard good things about [11ty](https://www.11ty.dev/), so
-tried it out but quickly found it a little limiting for my desired use cases, as
-it did not support JSX for templating. I started making an 11ty plugin for this
-behaviour but it felt like I was fighting 11ty to get what I wanted, so I
-started looking for other options before I went further with rolling my own
-plugins (since I carried out this investigation 11ty has gained support for
-[MDX](https://www.11ty.dev/docs/languages/mdx/) &
-[JSX](https://www.11ty.dev/docs/languages/jsx/)). When looking at different SSGs
-I came across a framework called [Astro](https://astro.build/) which from the
-sales pitch seemed suspiciously perfect, so I built a little hello world project
-and to my surprise everything I wanted was supported with minimal work!! With
-pretty much just adding 1st party dependencies, I could create blog posts in
-MDX, create templates in JSX AND generate a fully static site with components
-that could be loaded at runtime using the "islands architecture".
+Knowing I would prefer to use an off-the-shelf SSG all I needed to do was find
+one that fulfilled my needs. I had heard good things about
+[11ty](https://www.11ty.dev/), so tried it out but quickly found it a little
+limiting for my desired use cases, as it did not support JSX for templating. I
+started making an 11ty plugin for this behaviour but it felt like I was fighting
+11ty to get what I wanted, so I started looking for other options before I went
+further with rolling my own plugins (since I carried out this investigation 11ty
+has gained support for [MDX](https://www.11ty.dev/docs/languages/mdx/) &
+[JSX](https://www.11ty.dev/docs/languages/jsx/)).
+
+When looking at different SSGs I came across a framework called
+[Astro](https://astro.build/) which from the sales pitch seemed suspiciously
+perfect, so I built a little hello world project and to my surprise everything I
+wanted was supported with minimal work!! Using exclusively first party
+dependencies, I could create blog posts in MDX, create templates in JSX AND
+generate a fully static site with components that could be loaded at runtime
+using the "islands architecture".
 
 <SideNote type="note">
 	I am a big fan of the islands architecture as it makes progressive enhancement
@@ -178,9 +179,9 @@ Anyway that's how we got here, I would love to hear ur thoughts on my blog setup
 or any ways I could improve it or if u have literally ANY OTHER THOUGHTS!!!!
 
 This post took significantly longer than expected because I got worried about my
-blogpost's quality, so started working on other projects then I broke my elbow
-and found typing hard but after being inspired by
-[TodePonds](https://mas.to/@TodePond) mastodon posts to
-[normalise sharing scrappy fiddles sharing scrappy fiddles](https://www.todepond.com/sky/sharing-scrappy-fiddles-is-hard/)
+blogposts quality, so started working on other projects, then I broke my elbow
+:c which made typing hard but gave me time to reflect and be inspired by
+[TodePonds](https://mas.to/@TodePond) mantra to
+"[normalise sharing scrappy fiddles sharing scrappy fiddles](https://www.todepond.com/sky/sharing-scrappy-fiddles-is-hard/)".
 I think that maybe my blog should allow me to riff and be a living space rather
 than something to be protected & held in perfect condition.
