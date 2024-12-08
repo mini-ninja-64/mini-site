@@ -30,17 +30,16 @@ at building a blog but it is the first "proper" one I've built and shipped.
 	im not really counting, but its funny to think about
 </SideNote>
 
-I decided I wanted to make a blog after reading a number of independednt blogs
-and finding them to be consistently inspiring, it got me thinking about projects
-I have worked on or build and I felt a bit sad that there was no way to see some
-of my oldest code and projects as they are not logged anywhere, this tends to be
-at odds with my normal desire to document things and share any and all accrued
-knowledge.
+I decided I wanted to make a blog after reading a number of independent blogs
+and finding them inspiring, it got me thinking about projects I have worked on
+or built and I felt a bit sad that there was no way to see some of my oldest
+code and projects as they are not logged anywhere, this tends to be at odds with
+my normal desire to document things and share any and all accrued knowledge.
 
 Over the past few years I have attempted to make a number of personal websites
 but kept getting distracted or busy. This time I decided to try my best to
-deliver _something_ I should try and keep things as simple while keeping a solid
-base that I can easily extend and find non-limiting.
+deliver _something_. I wanted to try and keep things as simple as possible while
+having a solid non-limiting foundation that I can easily extend.
 
 In my head I had a list of things that would be ideal for my blog, these being:
 
@@ -53,36 +52,36 @@ In my head I had a list of things that would be ideal for my blog, these being:
   <Enticing>
   	<Meowable client:load>🐈this🐈</Meowable>
   </Enticing>
-  , as (imo) it makes for a nice user experience.
+  (u can click it :3), as (imo) it makes for a nice user experience.
 
 # Experiments 👩‍🔬
 
-Taking my list of desires I wanted to figure out what was feasible, going in I
-foresaw at least 2 possible approaches, use a SSG or build my own wierd custom
-gluing bits together application, which although appealing would be me yak
-shaving possibly leading to me once again not shipping anything and putting my
+Taking my list of desires I wanted to figure out what was feasible. Going in I
+foresaw at least 2 possible approaches: Use a Static Site Generator (SSG) or
+build my own wierd custom application, which although appealing would be me yak
+shaving, possibly leading to me once again not shipping anything and putting my
 website back on the project shelf.
 
 Something I had known about and wanted to use for a while was a format called
-[MDX](https://mdxjs.com/) for me it seemed perfect for writing blog posts as my
-posts would not be limited by Markdown as I can stick components into the post
-like <Grower client:load>this one</Grower> (go on click it, I know you want to).
+[MDX](https://mdxjs.com/). To me it seemed perfect for writing blog posts as my
+markdown posts can be enriched by sticking components into them like the
+following: <Grower client:load>CLICK ME!!!</Grower>.
 
 Knowing I would prefer to use an SSG all I needed to do was find one that worked
-like I wanted, I had heard good things about [11ty](https://www.11ty.dev/), so I
+like I wanted. I had heard good things about [11ty](https://www.11ty.dev/), so
 tried it out but quickly found it a little limiting for my desired use cases, as
-I wanted to use JSX for templating I started making an 11ty plugin which for
-this behaviour but felt like I was fighting 11ty to get what I wanted, so I
+it did not support JSX for templating. I started making an 11ty plugin for this
+behaviour but it felt like I was fighting 11ty to get what I wanted, so I
 started looking for other options before I went further with rolling my own
 plugins (since I carried out this investigation 11ty has gained support for
 [MDX](https://www.11ty.dev/docs/languages/mdx/) &
-[JSX](https://www.11ty.dev/docs/languages/jsx/)). When looking at different
-SSG's I came across a framework called [Astro](https://astro.build/) which from
-the sales pitch seemed suspiciously perfect, so I built a little hello-world
-project and to my surprise everything I wanted was supported with minimal work
-(mostly just adding 1st party dependencies), I could create blog posts in MDX,
-create templates in JSX AND generate a fully static site with components that
-could be loaded at runtime using the "islands architecture".
+[JSX](https://www.11ty.dev/docs/languages/jsx/)). When looking at different SSGs
+I came across a framework called [Astro](https://astro.build/) which from the
+sales pitch seemed suspiciously perfect, so I built a little hello world project
+and to my surprise everything I wanted was supported with minimal work!! With
+pretty much just adding 1st party dependencies, I could create blog posts in
+MDX, create templates in JSX AND generate a fully static site with components
+that could be loaded at runtime using the "islands architecture".
 
 <SideNote type="note">
 	I am a big fan of the islands architecture as it makes progressive enhancement
@@ -92,7 +91,7 @@ could be loaded at runtime using the "islands architecture".
 # Implementing 👩‍💻
 
 Building upon my initial PoC work with Astro I built up a project structure I
-was happy with, and started building out my webpages, in the end I went with a
+was happy with, and started building out my webpages. In the end I went with a
 mix of Astro & Solid components which worked well for me.
 
 <FileTree name="/">
@@ -116,7 +115,7 @@ mix of Astro & Solid components which worked well for me.
 
 # Deploying 🚀
 
-Before this project I had never deployed to AWS using terraform, it was fun and
+Before this project I had never deployed to AWS using Terraform. It was fun and
 interesting learning about both of them!!
 
 As a Terraform/OpenTofu/HCL non-toucher, I initially found it difficult to parse
@@ -124,12 +123,12 @@ Terraform but after using it for 1 WHOLE project I have come to the conclusion
 that it is fine™. I feel no strong feelings towards it currently, I think there
 are ways it could be improved and also things it does nicely.
 
-That being said I was pleaased to see OpenTofu picking up the slack, and
+That being said I was pleased to see OpenTofu picking up the slack, and
 implementing features that are missing in Terraform like using variables in a
-[backend block](https://github.com/opentofu/opentofu/issues/388)
+[backend block](https://github.com/opentofu/opentofu/issues/388).
 
 My cloud stack for this site is fairly simple, it's hosted on AWS and uses the
-following:
+following services:
 
 - CloudFront
 - S3
@@ -153,7 +152,7 @@ HTTPS certificates and Route53 for DNS record management.
 
 This works great, except for 1 teeny tiny thing, all my HTML files have a
 `.html` at the end so would only be accessible through urls like
-`/blog/index.html`, although this is not really a problem and event used by some
+`/blog/index.html`. Although this is not really a problem and even used by some
 big retailers, I would prefer if links like `/blog` could be used. To fix this I
 utilise a CloudFront function, this is a small bit of code that runs on each
 request (for a fee 😭).
@@ -166,12 +165,12 @@ request (for a fee 😭).
 # Next? 🤔
 
 Hopefully more blog posts about things I work on and improving parts of the blog
-like my GitHub actions which only carry out the building and deploy of the site
-but not CloudFront cache invalidation or applying terraform files (currently
-done locally by me 😳, which I am unhappy with)
+like my GitHub actions; currently these only carry out the building and
+deployment of the site but not CloudFront cache invalidation or applying
+Terraform files (currently done locally by me 😳, which I am unhappy with).
 
-I would also like to explore moving away from AWS for a less all encompassing
-cloud provider maybe [bunny.net](https://bunny.net)?
+I would also like to explore moving away from AWS for a less world owning
+all-encompassing cloud provider maybe [bunny.net](https://bunny.net)?
 
 # Conclusion 🥳
 
@@ -179,8 +178,9 @@ Anyway that's how we got here, I would love to hear ur thoughts on my blog setup
 or any ways I could improve it or if u have literally ANY OTHER THOUGHTS!!!!
 
 This post took significantly longer than expected because I got worried about my
-blog posts quality, so started working on other projects then I broke my elbow
-and found typing hard but after being inspired by TodePond to
+blogpost's quality, so started working on other projects then I broke my elbow
+and found typing hard but after being inspired by
+[TodePonds](https://mas.to/@TodePond) mastodon posts to
 [normalise sharing scrappy fiddles sharing scrappy fiddles](https://www.todepond.com/sky/sharing-scrappy-fiddles-is-hard/)
 I think that maybe my blog should allow me to riff and be a living space rather
 than something to be protected & held in perfect condition.
